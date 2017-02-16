@@ -1,0 +1,16 @@
+<%= form_tag "/foods", method: :post do %>
+
+  <div>
+    Ingredient: <input type="text" name="ingredient">
+  </div>
+  <div>
+    Spice: <input type="text" name="spice">
+  </div>
+  <div>
+    Measurement: <input type="text" name="measurement">
+  </div>
+  <div>
+    <input type="submit" value="Create a food">
+  </div>
+  
+<% end %>

@@ -1,5 +1,7 @@
-<div>Ingredient: <%= @food["ingredient"] %></div>
-<div>Spice: <%= @food["spice"]%></div>
-<div>Measurement: <%= @food["measurement"]%></div>
- 
+<div>ID: <%= @food.id %></div>
+<div>Ingredient: <%= @food.ingredient %></div>
+<div>Spice: <%= @food.spice%></div>
+<div>Measurement: <%= @food.measurement%></div>
 
+<div><%= button_to "Edit food", "/foods/#{@food.id}/edit", method: :get %></div>
+<div><%= button_to "Remove food", "/foods/#{@food.id}", method: :delete %></div>

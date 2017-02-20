@@ -1,14 +1,16 @@
 <table>
   <tr>
+    <th>ID</th>
     <th>Ingredient</th>
     <th>Spice</th>
     <th>Measurement</th>
   </tr>
-  <% @foods.each do |food_hash| %>
+  <% @foods.each do |food| %>
   <tr>
-    <td><%= food_hash["ingredient"] %></td>
-    <td><%= food_hash["spice"] %></td>
-    <td><%= food_hash["measurement"] %></td>
+    <td><%= food.id %></td>
+    <td><%= food.ingredient %></td>
+    <td><%= food.spice %></td>
+    <td><%= food.measurement %></td>
   </tr>
   <% end %>
 </table>

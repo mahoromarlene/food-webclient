@@ -1,11 +1,11 @@
 class FoodsController < ApplicationController
 
   def index
-    @foods = Unirest.get("http://localhost:3000/api/v2/foods.json").body
+    @foods = Food.all
   end
 
   def show
-    @food = Unirest.get("http://localhost:3000/api/v2/foods/#{params[:id]}.json").body
+    @food = Food.find(params[:id])
   end
 
   def new
@@ -13,8 +13,22 @@ class FoodsController < ApplicationController
   end
 
   def create
-    @food = Unirest.post("http://localhost:3000/api/v2/foods.json", :headers => {"Accept" => "application/json"}, :parameters => {:ingredient => params[:ingredient], :spice => params[:spice], :measurement => params[:measurement]}).body
+    @food = Unirest.post("#{ENV['DOMAIN']}/foods.json", :headers => {"Accept" => "application/json"}, :parameters => {:ingredient => params[:ingredient], :spice => params[:spice], :measurement => params[:measurement]}).body
     redirect_to "/foods/#{@food['id']}"
+  end
+
+  def edit
+    @food = Unirest.get("#{ENV['DOMAIN']}/foods/#{params[:id]}.json").body
+  end
+
+  def update
+    @food = Unirest.patch("#{ENV['DOMAIN']}/foods.json", :headers => {"Accept" => "application/json"}, :parameters => {:ingredient => params[:ingredient], :spice => params[:spice], :measurement => params[:measurement]}).body
+    redirect_to "/foods/#{@food['id']}"
+  end
+
+  def destroy
+    @food = Unirest.delete("#{ENV['DOMAIN']}/foods/#{params[:id]}.json").body
+    redirect_to "/foods"
   end
 
 end
